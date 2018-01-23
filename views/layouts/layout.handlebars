@@ -74,6 +74,26 @@ body, html {
 </div>
 
 <!-- Container (About Section) -->
+<div>
+{{#if success_msg}}
+<div class="w3-container w3-section w3-green">
+<span onclick="this.parentElement.style.display='none'" class="w3-closebtn">&times;</span>
+  {{success_msg}}
+</div>
+{{/if}}
+{{# if error_msg}}
+<div class="w3-container w3-section w3-red">
+<span onclick="this.parentElement.style.display='none'" class="w3-closebtn">&times;</span>
+  {{error_msg}}
+</div>
+{{/if}}
+{{#if error}}
+<div class="w3-container w3-section w3-red">
+<span onclick="this.parentElement.style.display='none'" class="w3-closebtn">&times;</span>
+  {{error}}
+</div>
+{{/if}}
 {{{body}}}
+</div>
 </body>
 </html>
