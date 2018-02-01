@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
@@ -58,23 +60,19 @@ body, html {
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
-    <a href="/" class="w3-bar-item w3-button">DASHBOARD</a>
+    {{#if user}}
+    <a href="/users/dashboard" class="w3-bar-item w3-button">DASHBOARD</a>
+    <a href="/users/logout" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-out"></i> LOGOUT</a>
+    {{else}}
     <a href="/users/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user-plus"></i> REGISTER</a>
     <a href="/users/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-in"></i> LOGIN</a>
-    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-out"></i> LOGOUT</a>
+    {{/if}}
   </div>
-
-  <!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-    <a href="#about" class="w3-bar-item w3-button" onclick="toggleFunction()">DASHBOARD</a>
-    <a href="#portfolio" class="w3-bar-item w3-button" onclick="toggleFunction()">REGISTER</a>
-    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">LOGIN</a>
-    <a href="#" class="w3-bar-item w3-button">LOGOUT</a>
-  </div>
-</div>
-
+  
 <!-- Container (About Section) -->
 <div>
+<br>
+<br>
 {{#if success_msg}}
 <div class="w3-container w3-section w3-green">
 <span onclick="this.parentElement.style.display='none'" class="w3-closebtn">&times;</span>

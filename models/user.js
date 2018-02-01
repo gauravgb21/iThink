@@ -16,6 +16,8 @@ var UserSchema=mongoose.Schema({
 		type:String
 	}
 });
-
+UserSchema.methods.validPassword=function(pwd){
+return (this.password==pwd);
+};
 //Model the Schema
 module.exports=mongoose.model('user',UserSchema);;
