@@ -8,6 +8,8 @@ var passport=require('passport');
 var LocalStrategy=require('passport-local').Strategy;
 var flash=require('connect-flash');
 var session=require('express-session');
+var Handlebars     = require('handlebars');
+var HandlebarsIntl = require('handlebars-intl');
 var mongo=require('mongodb');
 var mongoose=require('mongoose');
 mongoose.connect('mongodb://localhost/loginapp');
@@ -23,6 +25,7 @@ var users=require('./routes/users');
 var app=express();
 
 //view Engine
+HandlebarsIntl.registerWith(Handlebars);
 
 app.set('views',path.join(__dirname,'views'));
 app.engine('handlebars',exphbs({defaultLayout:'layout'}));

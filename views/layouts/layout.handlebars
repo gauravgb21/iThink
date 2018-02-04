@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
-<title>LOGINAPP</title>
+<title>iThink</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="viewport" content="width=device-width, initial-scale=1"><link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="/css/style.css">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
 body, html {
@@ -15,43 +17,9 @@ body, html {
     color: #777;
     line-height: 1.8;
 }
-
-/* Create a Parallax Effect */
-.bgimg-1, .bgimg-2, .bgimg-3 {
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-/* First image (Logo. Full height) */
-.bgimg-1 {
-    background-image: url('/w3images/parallax1.jpg');
-    min-height: 100%;
-}
-
-/* Second image (Portfolio) */
-.bgimg-2 {
-    background-image: url("/w3images/parallax2.jpg");
-    min-height: 400px;
-}
-
-/* Third image (Contact) */
-.bgimg-3 {
-    background-image: url("/w3images/parallax3.jpg");
-    min-height: 400px;
-}
-
-.w3-wide {letter-spacing: 10px;}
-.w3-hover-opacity {cursor: pointer;}
-
-/* Turn off parallax scrolling for tablets and phones */
-@media only screen and (max-device-width: 1024px) {
-    .bgimg-1, .bgimg-2, .bgimg-3 {
-        background-attachment: scroll;
-    }
-}
 </style>
+ <script  src="/js/index.js"></script>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <body>
 
 <!-- Navbar (sit on top) -->
@@ -61,17 +29,16 @@ body, html {
       <i class="fa fa-bars"></i>
     </a>
     {{#if user}}
-    <a href="/users/dashboard" class="w3-bar-item w3-button">DASHBOARD</a>
-    <a href="/users/logout" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-out"></i> LOGOUT</a>
+    <a href="/users/dashboard" class="w3-bar-item w3-button">Dashboard</a>
+    <a href="/users/logout" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-out"></i> Logout</a>
     {{else}}
-    <a href="/users/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user-plus"></i> REGISTER</a>
-    <a href="/users/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-in"></i> LOGIN</a>
+    <a href="/" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-home"></i> Home</a>
+    <a href="/users/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user-plus"></i> Register</a>
+    <a href="/users/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-in"></i> Login</a>
     {{/if}}
   </div>
-  
+  </div>
 <!-- Container (About Section) -->
-<div>
-<br>
 <br>
 {{#if success_msg}}
 <div class="w3-container w3-section w3-green">
@@ -91,7 +58,9 @@ body, html {
   {{error}}
 </div>
 {{/if}}
+<div>
 {{{body}}}
+</div>
 </div>
 </body>
 </html>

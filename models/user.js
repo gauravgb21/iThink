@@ -14,6 +14,18 @@ var UserSchema=mongoose.Schema({
 	},
 	name:{
 		type:String
+	},
+	profession:{
+		type:String
+	},
+	city:{
+		type:String
+	},
+	country:{
+		type:String
+	},
+	birthday:{
+		type:Date
 	}
 });
 UserSchema.methods.validPassword=function(pwd){

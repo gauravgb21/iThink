@@ -17,12 +17,15 @@ res.render('dashboard');
 
 router.post('/register',function(req,res)
 {
-  var name=req.body.name;
+  var name=req.body.name.toLowerCase();
   var username=req.body.username;
   var email=req.body.email;
   var password1=req.body.password1;
   var password2=req.body.password2;
-
+  var profession=req.body.profession.toLowerCase();
+  var city=req.body.city.toLowerCase();
+  var country=req.body.country.toLowerCase();
+  var birthday=req.body.birthday;
   //Validations
   req.checkBody('name','Name is required').notEmpty();
   req.checkBody('email','Email is required').notEmpty();
@@ -42,7 +45,11 @@ router.post('/register',function(req,res)
   		username:username,
   		password:password1,
   		email:email,
-  		name:name
+  		name:name,
+      profession:profession,
+      city:city,
+      country:country,
+      birthday:birthday
   	});
   	newUser.save(function(err,data){
        if(err)
@@ -50,7 +57,7 @@ router.post('/register',function(req,res)
        console.log(data);
   	});
      
-     req.flash('success_msg','You are registered!');
+    // req.flash('success_msg','You are registered!');
      res.redirect('/users/login');
   }
 
@@ -94,7 +101,7 @@ router.post('/login',
 
 router.get('/logout',function(req,res){
 req.logout();
-req.flash('success_msg','You are logged out successfully');
+//req.flash('success_msg','You are logged out successfully');
 res.redirect('/users/login');
 });
 module.exports=router;
