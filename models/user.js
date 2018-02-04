@@ -26,7 +26,8 @@ var UserSchema=mongoose.Schema({
 	},
 	birthday:{
 		type:Date
-	}
+	},
+	posts:[String]
 });
 UserSchema.methods.validPassword=function(pwd){
 return (this.password==pwd);

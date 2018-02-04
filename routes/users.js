@@ -104,4 +104,17 @@ req.logout();
 //req.flash('success_msg','You are logged out successfully');
 res.redirect('/users/login');
 });
+
+router.post('/blog_post',function(req,res){
+var post=req.body.comment;
+console.log(req.body);
+User.findByIdAndUpdate(req.user._id,
+  {"$push":{"posts":post}},{"new":true,"upsert":true},
+  function(err,managerparent){
+    if(err)
+      throw err;
+  });
+res.redirect('/users/dashboard');
+});
+
 module.exports=router;
