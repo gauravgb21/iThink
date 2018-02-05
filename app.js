@@ -81,6 +81,16 @@ res.locals.success_msg=req.flash('success_msg');
 res.locals.error_msg=req.flash('error_msg');
 res.locals.error=req.flash('error');
 res.locals.user=req.user||null;
+if(res.locals.user!=null)
+{
+  var arr=res.locals.user.posts;
+  var post=[];
+  for(var i=arr.length-1;i>=0;i--)
+  {
+     post.push(arr[i]);
+  }
+  res.locals.user.posts=post;
+}
 next();
 });
 
