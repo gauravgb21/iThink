@@ -1,18 +1,20 @@
-<body class="w3-theme-l5">
+
 <br>
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;">    
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
-    <div class="w3-col m3">
+    <div class="w3-col m3" style="position: fixed;">
       <!-- Profile -->
-      <div class="w3-card w3-round w3-white">
-        <div class="w3-container">
+      <div class="w3-card w3-round w3-white w3-hover-shadow">
+        <div class="w3-container w3-theme-d5">
          <h4>{{user.name}}</h4>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> {{user.profession}}</p>
-         <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> {{user.city}}, {{user.country}}</p>
-         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>{{formatDate user.birthday}}</p>
+         <p class="w3-center"><img src="https://www.w3schools.com/w3images/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <hr>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right "></i> {{user.profession}}</p>
+         <p><i class="fa fa-home fa-fw w3-margin-right "></i> {{user.city}}, {{user.country}}</p>
+         <p><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i>{{formatDate user.birthday}}</p>
         </div>
       </div>
       <br>
@@ -20,15 +22,15 @@
       <!-- Accordion -->
       <div class="w3-card w3-round">
         <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
+          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-d5 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
           <div id="Demo1" class="w3-hide w3-container">
             <p>Some text..</p>
           </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
+          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-d5 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
           <div id="Demo2" class="w3-hide w3-container">
             <p>Some other text..</p>
           </div>
-          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
+          <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-d5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
           <div id="Demo3" class="w3-hide w3-container">
          <div class="w3-row-padding">
          <br>
@@ -60,14 +62,14 @@
     </div>
     
     <!-- Middle Column -->
-    <div class="w3-col m7">
+    <div class="w3-col m7"  style="left: 28.5%; position: absolute;">
       <div class="w3-row-padding">
         <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
+          <div class="w3-card w3-round w3-white w3-hover-shadow w3-theme-d5" style="width: 500px;">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">share your thoughts!</h6>
               <form method="post" action="/users/blog_post" id="usrform">
-                       <textarea class="w3-border w3-padding"  rows="5" cols="80" name="comment" form="usrform">
+                       <textarea class="w3-border w3-padding"  rows="5" cols="60" name="comment" form="usrform">
                        </textarea>
                        <br>
                        <input type="submit" class="w3-button w3-theme" name="comment_post" value="post">
@@ -78,16 +80,47 @@
       </div>
     
     {{#each user.posts}}
-        <div class="w3-container w3-card w3-white w3-round w3-margin" style="overflow: scroll;"><br>
-        <p>{{this}}</p><br>
+        <div class="w3-container w3-card w3-white w3-round w3-margin w3-hover-shadow w3-theme-d5" style="width: 500px;""><br>
+        <p>{{{this}}}</p><br><br>
+        <hr>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
       </div>      
         {{/each}}
 
-
     <!-- End Middle Column -->
     </div>
+
+  <div class="w3-col m2" style=" position: fixed;
+  right: 0px;">
+      <div class="w3-card w3-round w3-white w3-center w3-theme-d5">
+        <div class="w3-container">
+          <p>Upcoming Events:</p>
+          <p><strong>Holiday</strong></p>
+          <p>Friday 15:00</p>
+        </div>
+      </div>
+      <br>
+      
+      <div class="w3-card w3-round w3-white w3-center w3-theme-d5">
+        <div class="w3-container">
+          <p>Friend Request</p>
+          <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
+          <span>Jane Doe</span>
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+
+
+
     </div>
     
   <!-- End Grid -->
@@ -110,7 +143,7 @@ function myFunction(id) {
     }
 }
 
-// Used to toggle the menu on smaller screens when clicking on the menu button
+Used to toggle the menu on smaller screens when clicking on the menu button
 function openNav() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
@@ -120,5 +153,3 @@ function openNav() {
     }
 }
 </script>
-
-</body>
