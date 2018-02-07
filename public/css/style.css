@@ -8,13 +8,14 @@
 body {
   font-family: "Roboto";
   font-size: 14px;
- /* background-size: 200% 100% !important;
+  /*background-size: 200% 100% !important;*/
   -webkit-animation: move 10s ease infinite;
           animation: move 10s ease infinite;
-  -webkit-transform: translate3d(0, 0, 0);
+  /*-webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
-  background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
- */ height: 100vh;
+*/  
+ background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
+  height: 100vh;
 }
 
 .user {

@@ -106,8 +106,8 @@ res.redirect('/users/login');
 });
 
 router.post('/blog_post',function(req,res){
-var post=req.body.comment;
-//console.log(req.body);
+  //console.log(req.body);
+var post=req.body.value;;
 post = post.replace(/\r?\n/g, '<br />');
 User.findByIdAndUpdate(req.user._id,
   {"$push":{"posts":post}},{"new":true,"upsert":true},
@@ -115,7 +115,7 @@ User.findByIdAndUpdate(req.user._id,
     if(err)
       throw err;
   });
-res.redirect('/users/dashboard');
+//res.redirect('/users/dashboard');
 });
 
 module.exports=router;
