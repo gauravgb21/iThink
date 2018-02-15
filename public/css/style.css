@@ -4,20 +4,11 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-
 body {
   font-family: "Roboto";
   font-size: 14px;
-  /*background-size: 200% 100% !important;*/
-  -webkit-animation: move 10s ease infinite;
-          animation: move 10s ease infinite;
-  /*-webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-*/  
- background: linear-gradient(45deg, #49D49D 10%, #A2C7E5 90%);
-  height: 100vh;
+  background-color: #e9ebee;
 }
-
 .user {
   width: 90%;
   max-width: 340px;
@@ -167,4 +158,29 @@ body {
   }
 }
 
+
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.btn1 {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  /*font-weight: bold;*/
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 

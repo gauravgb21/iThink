@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
 <title>iThink</title>
+<head>
 <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1">
  <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel="stylesheet" href="/css/style.css">
-
 <style>
 </style>
  <script  src="/js/index.js"></script>
+ <script type="text/javascript" src="/js/emojionearea.min.js"></script>
   <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  </head>
 <body>
-
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-theme-d5" id="myNavbar">
@@ -26,9 +27,8 @@
     </a>
     {{#if user}}
     <a href="/users/logout" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-sign-out"></i> Logout</a>
-    <a href="/users/dashboard" class="w3-bar-item w3-button w3-right"><i class="fa fa-user"></i>  Dashboard</a>
+    <a href="/users/dashboard" class="w3-bar-item w3-button w3-right"><i class="fa fa-home"></i>  Home</a>
     {{else}}
-    <a href="/" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-home"></i> Home</a>
     <a href="/users/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user-plus"></i> Register</a>
     <a href="/users/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-in"></i> Login</a>
     {{/if}}
@@ -54,9 +54,8 @@
   {{error}}
 </div>
 {{/if}}
-<div>
+
 {{{body}}}
-</div>
-</div>
+
 </body>
 </html>

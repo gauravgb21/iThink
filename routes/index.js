@@ -3,7 +3,7 @@ var router=express.Router();
 
 router.get('/',function(req,res){
 	//console.log(res.user);
-	res.render('index');
+	res.render('login');
 });
 
 module.exports=router;
