@@ -107,7 +107,7 @@ res.redirect('/users/login');
 
 router.post('/blog_post',function(req,res){
   //console.log(req.body);
-var post=req.body.value;;
+var post=req.body.value;
 post = post.replace(/\r?\n/g, '<br />');
 User.findByIdAndUpdate(req.user._id,
   {"$push":{"posts":post}},{"new":true,"upsert":true},
@@ -116,6 +116,18 @@ User.findByIdAndUpdate(req.user._id,
       throw err;
   });
 //res.redirect('/users/dashboard');
+});
+
+router.post('/profileupdate',function(req,res){
+
+var imageUrl=req.body.value;
+User.findByIdAndUpdate(req.user._id,
+  { $set:{"imageUrl":imageUrl}},
+  function(err,managerparent){
+    if(err)
+      throw err;
+  });
+  res.render('dashboard');
 });
 
 module.exports=router;

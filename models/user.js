@@ -24,6 +24,9 @@ var UserSchema=mongoose.Schema({
 	country:{
 		type:String
 	},
+	imageUrl:{
+      type:String
+	},
 	birthday:{
 		type:Date
 	},

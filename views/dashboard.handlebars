@@ -10,11 +10,12 @@
       <!-- Profile -->
       <div class="w3-card w3-round w3-white w3-hover-shadow">
         <div class="w3-container w3-theme-l5" style="width: 380px;height: 595px;">
-         <p class="w3-center" ><img src="http://givemesport.azureedge.net/images/18/01/22/b2f4315e00578c3ac32118d9cb137f8b/960.jpg" class="w3-rounded" style="height:280px;width:350px;margin-top: 3%;" alt="Avatar">
+         <p class="w3-center" ><img src= {{user.imageUrl}} class="w3-rounded" style="height:280px;width:350px;margin-top: 3%;" alt="Avatar">
            <div class="upload-btn-wrapper">
-            <button class="btn1">Update Profile Picture</button>
-           <input type="file" name="myfile" />
+            <button class="btn1" style="display: none;" id="updatebtn">Update Profile Picture</button>
+           <input type="file" id="file" />
            </div>
+           <button class="btn1" style="display: none;" id="changebtn" onclick="uploadFile()">Change</button>
          </p>
          <h4>{{user.name}}</h4>
          <hr>
@@ -36,9 +37,9 @@
           <div class="w3-card w3-round w3-white w3-hover-shadow w3-theme-l5" style="width: 480px;">
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">share your thoughts!</h6>
-              <p class="lead emoji-picker-container">
+              <p >
               <!-- <form method="post" action="/users/blog_post" id="usrform"> -->
-                       <textarea class="w3-border w3-padding"  rows="5" cols="50" name="comment" form="usrform" id="textid" data-emojiable="true" >
+                       <textarea class="w3-border w3-padding"  rows="5" cols="50" name="comment" form="usrform" id="textid"  >
                        </textarea>
                        <br>
                        <button class="w3-button w3-theme-d5" onclick="loadDoc()"><i class="fa fa-pencil" style="padding-right: 8px;"></i>post</button>
@@ -55,7 +56,7 @@
         <div class="w3-container w3-card w3-white w3-round w3-margin w3-hover-shadow w3-theme-l5 wrap" style="width: 480px;">
         <div>
          <div class="header" style="margin-top: 20px;">
-           <p class=""><img src="http://givemesport.azureedge.net/images/18/01/22/b2f4315e00578c3ac32118d9cb137f8b/960.jpg" class="w3-circle" style="height:40px;width:40px;" alt="Avatar"></p>
+           <p class=""><img src={{user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar"></p>
            <hr>
          </div>
         <p style="margin-top: 40px;">{{{this}}}</p>   
@@ -110,3 +111,15 @@ function openNav() {
         x.className = x.className.replace(" w3-show", "");
     }
 }
+</script>
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+<script type="text/javascript">
+  var config = {
+    apiKey: 'AIzaSyBiQFWX-K78Uj49N--rMF8z5piALyLWHXo',
+    authDomain: 'ithink-fbc4c.firebaseapp.com',
+    databaseURL: 'https://ithink-fbc4c.firebaseio.com',
+    storageBucket: 'ithink-fbc4c.appspot.com'
+  };
+  firebase.initializeApp(config);
+  var storage = firebase.storage();
+</script>

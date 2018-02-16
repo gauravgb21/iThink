@@ -1,3 +1,4 @@
+var selectedFile;
 $('.btn').on('click', function () {
     $('.form').addClass('form--no');
 });
@@ -37,13 +38,26 @@ function loadDoc()
     div.className+=" wrap";
     div.style.width=" 480px";
     
+    var img=document.createElement("img");
+    img.className+=" w3-circle";
+    img.src="http://givemesport.azureedge.net/images/18/01/22/b2f4315e00578c3ac32118d9cb137f8b/960.jpg";
+
+    img.style.height="40px";
+
+    img.style.width="40px";
+
     var div1=document.createElement("div");
     var headerdiv=document.createElement("div");
     headerdiv.className+=" header";
-    headerdiv.style.marginTop="20px";
-    headerdiv.appendChild(hr);
+    headerdiv.style.marginTop="10px";
+    var p1=document.createElement("p");
+    p1.appendChild(img);
+    headerdiv.appendChild(p1);
+    var hr1=document.createElement("hr");
+    headerdiv.appendChild(hr1);
     var footerdiv=document.createElement("div");
     footerdiv.className+=" footer";
+
 
     button1.className+=" w3-button";
     button1.className+=" w3-margin-bottom";
@@ -60,11 +74,11 @@ function loadDoc()
     div.appendChild(br);
     footerdiv.appendChild(hr);
 
-    button1.style.marginRight="4px";
-    button1.appendChild(i1);
-
-
-    button2.appendChild(i2);
+    
+    button1.style.width="200px";
+    button2.style.width="200px";
+    // i1.style.paddingRight="8px";
+    // i2.style.paddingRight="8px";
 
     footerdiv.appendChild(button1);
     footerdiv.appendChild(button2);
@@ -80,9 +94,66 @@ function loadDoc()
 
 $(document).ready(function(){
     $("#profilepc").mouseover(function(){
-        $(".btn1").css("display", "block");
+        $("#updatebtn").css("display", "block");
     });
     $("#profilepc").mouseout(function(){
-        $(".btn1").css("display", "none");
+        $("#updatebtn").css("display", "none");
+    });
+
+    $("#file").on("change",function(event){
+        selectedFile=event.target.files[0];
+        $("#changebtn").css("display","block");
     });
 });
+
+
+function uploadFile(){
+//create root reference
+var filename= selectedFile.name;
+var storageRef=firebase.storage().ref('/profileImages/'+ filename);
+console.log("storage ref is");
+console.log(storageRef);
+var uploadTask= storageRef.put(selectedFile);
+ 
+ // Register three observers:
+// 1. 'state_changed' observer, called any time the state changes
+// 2. Error observer, called on failure
+// 3. Completion observer, called on successful completion
+uploadTask.on('state_changed', function(snapshot){
+  // Observe state change events such as progress, pause, and resume
+  // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+  var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  console.log('Upload is ' + progress + '% done');
+  switch (snapshot.state) {
+    case firebase.storage.TaskState.PAUSED: // or 'paused'
+      console.log('Upload is paused');
+      break;
+    case firebase.storage.TaskState.RUNNING: // or 'running'
+      console.log('Upload is running');
+      break;
+  }
+}, function(error) {
+  // Handle unsuccessful uploads
+  console.log("there is an error!");
+}, function() {
+  // Handle successful uploads on complete
+  // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+  var downloadURL = uploadTask.snapshot.downloadURL;
+   
+   //change dp
+
+    $.ajax({
+      url: '/users/profileupdate',
+      type: 'POST',
+      data: {value:downloadURL},
+      success: function(result){
+        console.log("request sent to server");
+      }
+    });
+   
+   //document.getElementById("dp").src=downloadURL;
+  console.log(downloadURL);
+  $("#changebtn").css("display","none");
+});
+
+}
