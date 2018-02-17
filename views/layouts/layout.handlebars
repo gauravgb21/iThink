@@ -27,6 +27,10 @@
     {{#if user}}
     <a href="/users/logout" class="w3-bar-item w3-button w3-hide-small w3-right"><i class="fa fa-sign-out"></i> Logout</a>
     <a href="/users/dashboard" class="w3-bar-item w3-button w3-right"><i class="fa fa-home"></i>  Home</a>
+    <form action="/action_page.php" class="w3-bar-item w3-left">
+      <input type="text" placeholder="Search.." name="search" style="width: 480px;height: 25px;margin-left: 385px;border-radius: 5px;padding: 10px;">
+      <button type="submit" style="background: white; margin-left: -20px;border: none;cursor: pointer;"><i class="fa fa-search"></i></button>
+    </form>
     {{else}}
     <a href="/users/register" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user-plus"></i> Register</a>
     <a href="/users/login" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sign-in"></i> Login</a>

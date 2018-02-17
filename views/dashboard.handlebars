@@ -10,7 +10,7 @@
       <!-- Profile -->
       <div class="w3-card w3-round w3-white w3-hover-shadow">
         <div class="w3-container w3-theme-l5" style="width: 380px;height: 595px;">
-         <p class="w3-center" ><img src= {{user.imageUrl}} class="w3-rounded" style="height:280px;width:350px;margin-top: 3%;" alt="Avatar">
+         <p class="w3-center" ><img src= {{user.imageUrl}} class="w3-rounded" style="height:280px;width:350px;margin-top: 3%;border-radius: 5px;cursor: pointer;" alt="Avatar" id="dp">
            <div class="upload-btn-wrapper">
             <button class="btn1" style="display: none;" id="updatebtn">Update Profile Picture</button>
            <input type="file" id="file" />
@@ -56,13 +56,13 @@
         <div class="w3-container w3-card w3-white w3-round w3-margin w3-hover-shadow w3-theme-l5 wrap" style="width: 480px;">
         <div>
          <div class="header" style="margin-top: 20px;">
-           <p class=""><img src={{user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar"></p>
+           <p class=""><img src={{../user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar"><span  style="margin-left: 7px;font-weight: bold;"><a href="/users/dashboard" style="text-decoration: none;color: #365899;">{{../user.name}}</a></span></p>
            <hr>
          </div>
         <p style="margin-top: 40px;">{{{this}}}</p>   
         <div class="footer">
         <hr>
-        <button type="button" class="w3-button  w3-margin-bottom " style="width: 200px;"><i class="fa fa-thumbs-up" style="padding-right: 8px;"></i>Like</button> 
+        <button type="button" class="w3-button  w3-margin-bottom " style="width: 200px;"><i class="fa fa-thumbs-up" style="padding-right: 8px;"></i>Like<span>(143)</span></button> 
         <button type="button" class="w3-button  w3-margin-bottom" style="width: 200px;"><i class="fa fa-comment" style="padding-right: 8px;"></i>Comment</button>
         </div>
         </div> 
@@ -123,3 +123,4 @@ function openNav() {
   firebase.initializeApp(config);
   var storage = firebase.storage();
 </script>
+

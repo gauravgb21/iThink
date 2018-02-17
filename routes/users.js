@@ -127,7 +127,17 @@ User.findByIdAndUpdate(req.user._id,
     if(err)
       throw err;
   });
-  res.render('dashboard');
+  //res.render('dashboard');
 });
 
+
+router.get('/blog_img',function(req,res){
+
+  var string=req.user.imageUrl;
+  //console.log(string);
+  res.send(string);
+  // console.log(req);
+  //res.json({imgUrl:req.imageUrl});
+  //console.log(res);
+});
 module.exports=router;

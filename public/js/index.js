@@ -40,7 +40,12 @@ function loadDoc()
     
     var img=document.createElement("img");
     img.className+=" w3-circle";
-    img.src="http://givemesport.azureedge.net/images/18/01/22/b2f4315e00578c3ac32118d9cb137f8b/960.jpg";
+    
+    $.get("/users/blog_img", function(data) {
+      //console.log("haan yhi h neeche wala!");
+      //console.log(data);
+         img.src=data;     
+     });
 
     img.style.height="40px";
 
@@ -151,8 +156,8 @@ uploadTask.on('state_changed', function(snapshot){
       }
     });
    
-   //document.getElementById("dp").src=downloadURL;
-  console.log(downloadURL);
+   document.getElementById("dp").src=downloadURL;
+  //console.log(downloadURL);
   $("#changebtn").css("display","none");
 });
 
