@@ -51,12 +51,28 @@ function loadDoc()
 
     img.style.width="40px";
 
+    var span=document.createElement("span");
+    var a=document.createElement("a");
+    span.style.marginLeft="7px";
+    span.style.fontWeight="bold";
+
+    a.href="/users/dashboard";
+    a.style.textDecoration="none";
+    a.style.color="#365899";
+
+    $.get("/users/blog_name",function(data){
+       a.innerHTML=data;
+    });
+    
+    span.appendChild(a);
+
     var div1=document.createElement("div");
     var headerdiv=document.createElement("div");
     headerdiv.className+=" header";
     headerdiv.style.marginTop="10px";
     var p1=document.createElement("p");
     p1.appendChild(img);
+    p1.appendChild(span);
     headerdiv.appendChild(p1);
     var hr1=document.createElement("hr");
     headerdiv.appendChild(hr1);

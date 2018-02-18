@@ -140,4 +140,10 @@ router.get('/blog_img',function(req,res){
   //res.json({imgUrl:req.imageUrl});
   //console.log(res);
 });
+
+router.get('/blog_name',function(req,res){
+  var string=req.user.name;
+  res.send(string);
+});
+
 module.exports=router;
