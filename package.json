@@ -20,6 +20,7 @@
     "express-session": "*",
     "express-validator": "*",
     "handlebars-intl": "^1.1.2",
+    "moment": "^2.22.2",
     "mongodb": "*",
     "mongoose": "*",
     "passport": "*",

@@ -1,35 +1,7 @@
-<!-- <div class="w3-content w3-container " id="about">
-{{#if errors}}
-     {{#each errors}}
-     <div class="w3-container w3-section w3-red">
-<span onclick="this.parentElement.style.display='none'" class="w3-closebtn">&times;</span>
-  {{msg}}
-</div>
-     {{/each}}
-{{/if}}
-  <div class="w3-center">
-  <h3 class="w3-center">REGISTER HERE!</h3>
-  	<form method="post" action="/users/register">
-  	    NAME<input type="text" name="name" style="margin-left: 140px;"><br><br>
-  		  USERNAME<input type="text" name="username" style="margin-left: 100px;"><br><br>
-        EMAIL<input type="text" name="email" style="margin-left: 140px;"><br><br>
-        BIRTHDAY<input type="date" name="birthday" style="margin-left: 105px;"><br><br>
-        PROFESSION<input type="text" name="profession" style="margin-left: 100px;"><br><br>
-        CITY<input type="text" name="city" style="margin-left: 155px;"><br><br>
-        COUNTRY<input type="text" name="country" style="margin-left: 120px;"><br><br>
-        PASSWORD<input type="password" name="password1" style="margin-left: 100px;"><br><br>
-        CONFIRM PASSWORD:<input type="password" name="password2" style="margin-left: 25px;"><br><br>
-        <input type="submit" name="register" value="REGISTER">
-  	</form>
-  </div>
-</div> -->
-
-
-
 <div class="user">
 {{#if errors}}
      {{#each errors}}
-     <div class="w3-container w3-section w3-red">
+<div class="w3-container w3-section w3-red">
 <span onclick="this.parentElement.style.display='none'" class="w3-closebtn">&times;</span>
   {{msg}}
 </div>
@@ -40,7 +12,7 @@
         <h3 class="user__title">iThink</h3>
     </header>
     
-    <form class="form" method="post" action="/users/register">
+    <form class="form" method="post" action="/register">
         <div class="form__group">
             <input type="text" placeholder="Name" class="form__input" name="name" />
         </div>

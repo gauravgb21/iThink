@@ -1,4 +1,3 @@
-<link rel="stylesheet" type="text/css" href="/css/emojionearea.css"/>
 <script type="text/javascript" src="/js/index.js">
 </script>
 <br>
@@ -7,92 +6,72 @@
   <!-- The Grid -->
   <div class="w3-row">
     <!-- Left Column -->
-    <div class="w3-col m3 w3-theme-l5" style="position: fixed;" id="profilepc">
       <!-- Profile -->
-      <div class="w3-card w3-round w3-white w3-hover-shadow">
-        <div class="w3-container w3-theme-l5" style="width: 380px;height: 595px;">
-         <p class="w3-center" ><img src= {{user.imageUrl}} class="w3-rounded" style="height:300px;width:300px;margin-top: 3%;border-radius: 5px;cursor: pointer;" alt="Avatar" id="dp">
+      <div class="w3-card w3-round w3-white w3-hover-shadow w3-container w3-theme-l5" id="profilepc" style="width: 28%;height: 95%;position: fixed;">
+         <p class="w3-left" ><img src= {{user.imageUrl}} class="w3-rounded" style="height:300px;width:300px;margin-top: 3%;border-radius: 5px;cursor: pointer;" alt="Avatar" id="dp">
            <div class="upload-btn-wrapper">
-            <button class="btn1" style="display: none;" id="updatebtn">Update Profile Picture</button>
+            <button class="btn1 w3-theme-d4" style="border: none;width: 300px;cursor: pointer;" id="updatebtn">Update</button>
            <input type="file" id="file" />
            </div>
-           <button class="btn1" style="display: none;" id="changebtn" onclick="uploadFile()">Change</button>
+           <button class="btn1 w3-theme-d4" style="display: none;border: none;width: 300px;cursor: pointer;" id="changebtn" onclick="uploadFile()">Change</button>
          </p>
          <h4>{{user.name}}</h4>
          <hr>
          <button class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i> {{user.profession}}</button>
          <button class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-home fa-fw w3-margin-right "></i> {{user.city}}, {{user.country}}</button>
          <button class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i>{{formatDate user.birthday}}</button>
-         <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-          <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-          <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
-        </div>
-      </div>
+          <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Friends <span style="margin-left: 3%;">1</span></button>
     <!-- End Left Column -->
     </div>
     
     <!-- Middle Column -->
-    <div class="w3-col m7"  style="left: 28.5%; position: absolute;" id="postsdiv">
+    <div class="w3-col m4"  style="left: 28.5%; position: absolute;width:480px; " id="postsdiv">
       <div class="w3-row-padding">
         <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white w3-hover-shadow w3-theme-l5" style="width: 480px;">
+          <div class="w3-card w3-round w3-white w3-hover-shadow w3-theme-l5" style="width: 152%;">
             <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">share your thoughts!</h6>
               <p >
-              <!-- <form method="post" action="/users/blog_post" id="usrform"> -->
-                       <textarea class="w3-border w3-padding"  rows="5" cols="50" name="comment" form="usrform" id="textid"  >
-                       </textarea>
-                       <br>
-                       <button class="w3-button w3-theme-d5" onclick="loadDoc()"><i class="fa fa-pencil" style="padding-right: 8px;"></i>post</button>
-
-                  <!-- <input type="submit" class="w3-button w3-theme" name="comment_post" value="post">
-              </form>  -->
+                   <textarea class="w3-border w3-padding"  rows="1" cols="85" form="usrform" id="headid" placeholder="Title of the Blog" >
+                   </textarea>
+                   <textarea class="w3-border w3-padding"  rows="5" cols="85" name="comment" form="usrform" id="textid" placeholder="Write your Blog">
+                   </textarea>
+                   <br>
+                   <button class="w3-button w3-theme-d4" style="border-radius: 20px;width:100px; " onclick="loadDoc()"><i class="fa fa-pencil" style="padding-right: 8px;"></i>post</button>
               </p>
             </div>
           </div>
         </div>
       </div>
-    
-    {{#each user.posts}}
-        <div class="w3-container w3-card w3-white w3-round w3-margin w3-hover-shadow w3-theme-l5 wrap" style="width: 480px;">
-        <div>
-         <div class="header" style="margin-top: 20px;">
-           <p class=""><img src={{../user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar"><span  style="margin-left: 7px;font-weight: bold;"><a href="/users/dashboard" style="text-decoration: none;color: #365899;">{{../user.name}}</a></span>
-           <span style="margin-left: 300px;">
-                          <button onclick="myFunction()" class=" dropdown"><i class="fa fa-cog dropbtn" ></i>
-                          </button>
-                           <div id="myDropdown" class="dropdown-content" style="border: none;">
-                              <a href="#home">Home</a>
-                              <a href="#about">About</a>
-                              <a href="#contact">Contact</a>
-                           </div>
-            </span>
-           </p>
-           <hr>
-         </div>
-        <p style="margin-top: 40px;">{{{this}}}</p>   
-        <div class="footer">
-        <hr>
-        <button type="button" class="w3-button  w3-margin-bottom " style="width: 200px;"><i class="fa fa-thumbs-up" style="padding-right: 8px;"></i>Like<span>(143)</span></button> 
-        <button type="button" class="w3-button  w3-margin-bottom" style="width: 200px;"><i class="fa fa-comment" style="padding-right: 8px;"></i>Comment</button>
-        </div>
-        </div> 
-      </div>      
-        {{/each}}
-
+    {{#if posts}}
+          {{#each posts}}
+              <div class="w3-container w3-card w3-white w3-round w3-margin w3-hover-shadow w3-theme-l5 wrap" style="width: 142%;">
+               <div class="header" style="margin-top: 20px;width: 142%;">
+                 <p style="width: 142%;"><img src={{../user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar"><span  style="margin-left: 7px;font-weight: bold;"><a href="/dashboard" style="text-decoration: none;color: #365899;">{{../user.name}}</a></span><span style="margin-left: 28%;">{{this.creation}}</span>
+                 </p>
+                 <hr style="width: 70%;">
+                 <p style="font-size: 20px;"><strong>{{this.title}}</strong></p>
+                 <!-- <hr style="width: 70%;"> -->
+               </div>
+              <p style="margin-top: 10px;">{{this.text}}</p>   
+              <div class="footer" style="width: 142%;">
+              <hr style="width: 70%;">
+              <button type="button" class="w3-button  w3-margin-bottom" style="width: 23%;border-radius: 20px;"><i class="fa fa-heart-o" style="padding-right: 8px;"></i>Like<span>{{this.likes}}</span></button> 
+              <button type="button" class="w3-button  w3-margin-bottom " style="width: 23%;border-radius: 20px;"><i class="fa fa-comments-o" style="padding-right: 8px;"></i>Comment</button>
+              <button type="button" class="w3-button  w3-margin-bottom " style="width: 23%;border-radius: 20px;"><i class="fa fa-share-square-o" style="padding-right: 8px;"></i>Share<span>{{this.shares}}</span></button>
+              </div>
+            </div>      
+          {{/each}}
+    {{else}}
+      <p style="margin-left: 45%;"><em>Sorry , No posts to show you.</em></p>
+    {{/if}}  
     <!-- End Middle Column -->
     </div>
-
-  <div class="w3-col m4" style=" position: fixed;
-  right: 0px;">
-      <div class="w3-card w3-round w3-white w3-center w3-theme-l5" style="height: 595px;">
-      </div>
-      <br>
-
-
-
-    </div>
-    
+   <!-- <div class="w3-col m4" style=" position: fixed;right: 0px;height:20%;margin-top: 20%;margin-right: 13%;width: 20%;">
+     <p><a href="/users/dashboard" style="color: #365899;">Terms</a> <a href="/users/dashboard" style="color: #365899;margin-left: 2%;">Help</a></p>
+    </div>    
+   <div class="w3-col m4" style=" position: fixed;right: 0px;height:20%;margin-top: 22%;margin-right: 13%;width: 20%;">
+     <p style="color: #365899;">iThink <i class="fa fa-copyright" style="color:#365899;"></i> 2018</p>
+    </div> -->
   <!-- End Grid -->
   </div>
   
@@ -113,7 +92,7 @@ function myFunction(id) {
     }
 }
 
-Used to toggle the menu on smaller screens when clicking on the menu button
+
 function openNav() {
     var x = document.getElementById("navDemo");
     if (x.className.indexOf("w3-show") == -1) {
@@ -136,14 +115,6 @@ function openNav() {
 </script>
 
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src="/js/emojionearea.min.js"></script>
-<script>
-$('#textid').emojioneArea({
-  pickerPosition:"bottom"
-});
-</script>
-
-
 <script>
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */

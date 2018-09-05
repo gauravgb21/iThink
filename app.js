@@ -1,25 +1,32 @@
-var express=require('express');
-var path=require('path');
-var cookieParser=require('cookie-parser');
-var bodyParser=require('body-parser');
-var exphbs=require('express-handlebars');
-var expressValidator=require('express-validator');
-var passport=require('passport');
-var LocalStrategy=require('passport-local').Strategy;
-var flash=require('connect-flash');
-var session=require('express-session');
-var Handlebars     = require('handlebars');
-var HandlebarsIntl = require('handlebars-intl');
-var mongo=require('mongodb');
-var mongoose=require('mongoose');
+var express          =   require('express');
+var path             =   require('path');
+var cookieParser     =   require('cookie-parser');
+var bodyParser       =   require('body-parser');
+var exphbs           =   require('express-handlebars');
+var expressValidator =   require('express-validator');
+var passport         =   require('passport');
+var LocalStrategy    =   require('passport-local').Strategy;
+var flash            =   require('connect-flash');
+var session          =   require('express-session');
+var Handlebars       =   require('handlebars');
+var HandlebarsIntl   =   require('handlebars-intl');
+var mongo            =   require('mongodb');
+var mongoose         =   require('mongoose');
 mongoose.connect('mongodb://localhost/loginapp');
-var db=mongoose.connection;
+var db               =   mongoose.connection;
 
 
 //Routes
-var routes=require('./routes/index');
-var users=require('./routes/users');
-
+var index            =   require('./routes/index');
+var blogimg          =   require('./routes/blogimg');
+var blogname         =   require('./routes/blogname');
+var blogpost         =   require('./routes/blogpost');
+var dashboard        =   require('./routes/dashboard');
+var logout           =   require('./routes/logout');
+var login            =   require('./routes/login');
+var profileupdate    =   require('./routes/profileupdate');
+var register         =   require('./routes/register');
+var search           =   require('./routes/search');
 
 //Init app
 var app=express();
@@ -77,26 +84,24 @@ app.use(flash());
 
 //Global Variables
 app.use(function(req,res,next){
-res.locals.success_msg=req.flash('success_msg');
-res.locals.error_msg=req.flash('error_msg');
-res.locals.error=req.flash('error');
-res.locals.user=req.user||null;
-if(res.locals.user!=null)
-{
-  var arr=res.locals.user.posts;
-  var post=[];
-  for(var i=arr.length-1;i>=0;i--)
-  {
-     post.push(arr[i]);
-  }
-  res.locals.user.posts=post;
-}
+res.locals.success_msg = req.flash('success_msg');
+res.locals.error_msg   = req.flash('error_msg');
+res.locals.error       = req.flash('error');
+res.locals.user        = req.user||null;
 next();
 });
 
-//connect routes middlewares
-app.use('/',routes);
-app.use('/users',users);
+//Handle routes
+app.use('/',index);
+app.use('/blog_img',blogimg);
+app.use('/blog_name',blogname);
+app.use('/blog_post',blogpost);
+app.use('/dashboard',dashboard);
+app.use('/login',login);
+app.use('/logout',logout);
+app.use('/profileupdate',profileupdate);
+app.use('/register',register);
+app.use('/search',search);
 
 //connect app 
 

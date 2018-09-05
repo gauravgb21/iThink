@@ -3,27 +3,36 @@ $('.btn').on('click', function () {
     $('.form').addClass('form--no');
 });
 
+$(document).ready(function(){
+  document.getElementById('textid').value = "";
+  document.getElementById('headid').value = ""; 
+});
 
 function loadDoc()
   {
-    var string=document.getElementById('textid').value.replace(/\r?\n/g, '<br />');
+    var string = document.getElementById('textid').value.replace(/\r?\n/g, '<br />');
+    var head   = document.getElementById('headid').value.replace(/\r?\n/g, '<br />');
     $.ajax({
-      url: '/users/blog_post',
+      url: '/blog_post',
       type: 'POST',
-      data: {value:string},
+      data: {value:string,
+             title:head  
+             },
       success: function(result){
         console.log("request sent to server");
       }
     });
 
-    var div=document.createElement("div");
-    var br=document.createElement("br");
-    var p=document.createElement("p");
-    var hr=document.createElement("hr");
-    var button1=document.createElement("button");
-    var button2=document.createElement("button");
-    var i1=document.createElement("i");
-    var i2=document.createElement("i");
+    var div      = document.createElement("div");
+    var br       = document.createElement("br");
+    var p        = document.createElement("p");
+    var hr       = document.createElement("hr");
+    var button1  = document.createElement("button");
+    var button2  = document.createElement("button");
+    var button3  = document.createElement("button");
+    var i1       = document.createElement("i");
+    var i2       = document.createElement("i");
+    var i3       = document.createElement("i");
 
     p.innerHTML=string;
     p.style.marginTop="40px";
@@ -36,12 +45,12 @@ function loadDoc()
     div.className+=" w3-hover-shadow";
     div.className+=" w3-theme-l5";
     div.className+=" wrap";
-    div.style.width=" 480px";
+    div.style.width=" 550px";
     
-    var img=document.createElement("img");
+    var img = document.createElement("img");
     img.className+=" w3-circle";
     
-    $.get("/users/blog_img", function(data) {
+    $.get("/blog_img", function(data) {
       //console.log("haan yhi h neeche wala!");
       //console.log(data);
          img.src=data;     
@@ -56,11 +65,11 @@ function loadDoc()
     span.style.marginLeft="7px";
     span.style.fontWeight="bold";
 
-    a.href="/users/dashboard";
+    a.href="/dashboard";
     a.style.textDecoration="none";
     a.style.color="#365899";
 
-    $.get("/users/blog_name",function(data){
+    $.get("/blog_name",function(data){
        a.innerHTML=data;
     });
     
@@ -87,10 +96,14 @@ function loadDoc()
     button2.className+=" w3-button";
     button2.className+=" w3-margin-bottom";
     button2.innerHTML="Comment";
+    
+    button3.className+=" w3-button";
+    button3.className+=" w3-margin-bottom";
+    button3.innerHTML="Share";
 
-    i1.className+=" fa fa-thumbs-up";
-    i2.className+=" fa fa-comment";
-
+    i1.className+=" fa fa-heart-o";
+    i2.className+=" fa fa-comments-o";
+    i3.className+=" fa fa-share-square-o"; 
     div.appendChild(br);
     div.appendChild(br);
     footerdiv.appendChild(hr);
@@ -103,7 +116,7 @@ function loadDoc()
 
     footerdiv.appendChild(button1);
     footerdiv.appendChild(button2);
-
+    footerdiv.appendChild(button3);
      div.appendChild(headerdiv);
      div.appendChild(p);
      div.appendChild(footerdiv);
@@ -114,13 +127,6 @@ function loadDoc()
 
 
 $(document).ready(function(){
-    $("#profilepc").mouseover(function(){
-        $("#updatebtn").css("display", "block");
-    });
-    $("#profilepc").mouseout(function(){
-        $("#updatebtn").css("display", "none");
-    });
-
     $("#file").on("change",function(event){
         selectedFile=event.target.files[0];
         $("#changebtn").css("display","block");
@@ -164,7 +170,7 @@ uploadTask.on('state_changed', function(snapshot){
    //change dp
 
     $.ajax({
-      url: '/users/profileupdate',
+      url: '/profileupdate',
       type: 'POST',
       data: {value:downloadURL},
       success: function(result){
@@ -178,3 +184,6 @@ uploadTask.on('state_changed', function(snapshot){
 });
 
 }
+
+
+
