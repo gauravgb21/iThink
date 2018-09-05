@@ -34,8 +34,8 @@ function loadDoc()
     var i2       = document.createElement("i");
     var i3       = document.createElement("i");
 
-    p.innerHTML=string;
-    p.style.marginTop="40px";
+    p.innerHTML       = string;
+    p.style.marginTop = "40px";
 
     div.className+=" w3-container";
     div.className+=" w3-card";
