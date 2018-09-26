@@ -34,20 +34,20 @@
         </div>
       </div>
 
-    {{#each user.searches}}
+    {{#each data}}
         <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-hover-shadow w3-theme-l5 wrap" style="width: 480px;margin-top: 2px;">
         <div class="w3-container w3-half" style="width:100px; ">
-        <p class=""><img src={{this._imageUrl}} class="w3-rounded" style="height:80px;width:80px;margin-top: 10px;margin-bottom: 10px;" alt="Avatar">
+        <p class=""><img src={{this.imageUrl}} class="w3-rounded" style="height:80px;width:80px;margin-top: 10px;margin-bottom: 10px;" alt="Avatar">
            </p>
        </div>
        <div class="w3-container w3-half" style="width: 340px;"><p style="margin-top: 15px;">
-         <span  style="font-weight: bold;"><a href="/dashboard" style="text-decoration: none;color: #365899;">{{this._name}}</a></span>
+         <span  style="font-weight: bold;"><a href="/userprofile/{{this.username}}" style="text-decoration: none;color: #365899;">{{this.name}}</a></span>
          <span style="margin-left: 210px;"><i class="fa fa-user-plus" style="cursor: pointer;"></i></span>
          </p>
          <p>
-         <span  style="font-weight: bold;"><a style="text-decoration: none;color: #909296;">{{this._profession}}</a></span><br>
-           <span  style="font-weight: bold;"><a  style="text-decoration: none;color: #909296;">{{this._city}}</a></span>
-         <span  style="font-weight: bold;margin-left: 2px;"><a style="text-decoration: none;color: #909296;">,{{this._country}}</a></span>
+         <span  style="font-weight: bold;"><a style="text-decoration: none;color: #909296;">{{this.profession}}</a></span><br>
+           <span  style="font-weight: bold;"><a  style="text-decoration: none;color: #909296;">{{this.city}}</a></span>
+         <span  style="font-weight: bold;margin-left: 2px;"><a style="text-decoration: none;color: #909296;">,{{this.country}}</a></span>
          </p>
        </div>
         </div>       

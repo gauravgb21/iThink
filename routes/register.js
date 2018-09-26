@@ -44,7 +44,7 @@ router.post('/',function(req,res){
   	newUser.save(function(err,data){
        if(err)
        	throw err;
-       console.log(data);
+      // console.log(data);
   	});
      
     // req.flash('success_msg','You are registered!');

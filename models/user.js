@@ -29,15 +29,7 @@ var UserSchema=mongoose.Schema({
 	},
 	birthday:{
 		type:Date
-	},
-	searches:[
-	{
-	  _name:String,
-	  _profession:String,
-	  _city:String,
-	  _country:String,
-	  _imageUrl:String	
-	}]
+	}
 });
 UserSchema.methods.validPassword=function(pwd){
 return (this.password==pwd);

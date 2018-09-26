@@ -27,8 +27,10 @@ var login            =   require('./routes/login');
 var profileupdate    =   require('./routes/profileupdate');
 var register         =   require('./routes/register');
 var search           =   require('./routes/search');
-
-//Init app
+var updatelikes      =   require('./routes/updatelikes');
+var getlikes         =   require('./routes/getlikes');
+var userprofile      =   require('./routes/userprofile');
+ //Init app
 var app=express();
 
 //view Engine
@@ -102,7 +104,9 @@ app.use('/logout',logout);
 app.use('/profileupdate',profileupdate);
 app.use('/register',register);
 app.use('/search',search);
-
+app.use('/updatelikes',updatelikes);
+app.use('/getlikes',getlikes);
+app.use('/userprofile',userprofile);
 //connect app 
 
 app.listen(8081,function(){

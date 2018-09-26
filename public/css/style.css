@@ -7,7 +7,7 @@
 body {
   font-family: "Roboto";
   font-size: 14px;
-  background-color: #e9ebee;
+  background-color: #36465d;
 }
 .user {
   width: 90%;
@@ -82,6 +82,11 @@ body {
   background: #a09486;
 }
 
+
+
+.buttn:hover {
+  background-color: #36465d; 
+}
 
 @-webkit-keyframes NO {
   from, to {
@@ -171,7 +176,7 @@ body {
 
 .btn1 {
   padding: 8px 20px;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   font-size: 15px;
   /*font-weight: bold;*/
 }
@@ -227,3 +232,38 @@ textarea {
 .dropdown a:hover {background-color: #ddd}
 
 .show {display:block;}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+    position: relative;
+    width: 50%;
+}
+
+#dp {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  backface-visibility: hidden;
+}
+
+.middle {
+  opacity: 0;
+  position: absolute;
+  top: 95.1%;
+  left: 86.9%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.container:hover .image {
+  opacity: 0.3;
+}
+
+.container:hover .middle {
+  opacity: 1;
+}
