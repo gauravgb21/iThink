@@ -29,7 +29,16 @@ var UserSchema=mongoose.Schema({
 	},
 	birthday:{
 		type:Date
-	}
+	},
+	following:[{
+		type:String
+	}],
+    followers:[{
+		type:String
+	}],	
+	requestsent:[{
+		type:String
+	}]
 });
 UserSchema.methods.validPassword=function(pwd){
 return (this.password==pwd);

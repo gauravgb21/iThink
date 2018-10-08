@@ -30,6 +30,8 @@ var search           =   require('./routes/search');
 var updatelikes      =   require('./routes/updatelikes');
 var getlikes         =   require('./routes/getlikes');
 var userprofile      =   require('./routes/userprofile');
+var addfriend        =   require('./routes/addfriend');
+var removefriend     =   require('./routes/removefriend');
  //Init app
 var app=express();
 
@@ -107,6 +109,8 @@ app.use('/search',search);
 app.use('/updatelikes',updatelikes);
 app.use('/getlikes',getlikes);
 app.use('/userprofile',userprofile);
+app.use('/addfriend',addfriend);
+app.use('/removefriend',removefriend);
 //connect app 
 
 app.listen(8081,function(){

@@ -31,11 +31,17 @@ router.post('/',function(req,res){
   	});
   }
   else{
+    name = name.split(' ');
+    var newname = "";
+    for(var i = 0;i < name.length; i++){
+      name[i] = name[i].charAt(0).toUpperCase() + name[i].slice(1);
+      newname+=name[i] + " "; 
+    }
   	var newUser = User({
   		username:username,
   		password:password1,
   		email:email,
-  		name:name,
+  		name:newname,
       profession:profession,
       city:city,
       country:country,

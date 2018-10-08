@@ -1,5 +1,5 @@
-<link rel="stylesheet" type="text/css" href="/css/emojionearea.css"/>
-<script type="text/javascript" src="/js/index.js">
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript" src="/js/friendrequest.js">
 </script>
 <br>
 <!-- Page Container -->
@@ -8,10 +8,19 @@
   <div class="w3-row">
     <!-- Left Column -->
     <div class="w3-card w3-round w3-white w3-hover-shadow w3-container w3-theme-l5" id="profilepc" style="width: 28%;height: 95%;position: fixed;">
-         <p class="w3-left" ><img src= {{user.imageUrl}} class="w3-rounded" style="height:300px;width:300px;margin-top: 3%;border-radius: 5px;cursor: pointer;" alt="Avatar" id="dp">
-           <div class="upload-btn-wrapper">
+         <p class="w3-left" >
+         <div class="container">
+         <img src= {{user.imageUrl}} class="w3-rounded" style="height:300px;width:300px;margin-top: 3%;border-radius: 5px;cursor: pointer;" alt="Avatar" id="dp">
+           <div class="middle">
+               <div class="upload-btn-wrapper">
+                  <button class="btn1" style="border: none;width: 300px;cursor: pointer;opacity: 0.7;background-color: black;color: white;" id="updatebtn">Update</button>
+                  <input type="file" id="file" />
+                </div>
+           </div>
+           <!-- <div class="upload-btn-wrapper">
             <button class="btn1 w3-theme-d4" style="border: none;width: 300px;cursor: pointer;" id="updatebtn">Update</button>
            <input type="file" id="file" />
+           </div> -->
            </div>
            <button class="btn1 w3-theme-d4" style="display: none;border: none;width: 300px;cursor: pointer;" id="changebtn" onclick="uploadFile()">Change</button>
          </p>
@@ -37,47 +46,26 @@
     {{#each data}}
         <div class="w3-container w3-card w3-white w3-round w3-margin-left w3-hover-shadow w3-theme-l5 wrap" style="width: 480px;margin-top: 2px;">
         <div class="w3-container w3-half" style="width:100px; ">
-        <p class=""><img src={{this.imageUrl}} class="w3-rounded" style="height:80px;width:80px;margin-top: 10px;margin-bottom: 10px;" alt="Avatar">
-           </p>
+        <div class=""><img src={{this.imageUrl}} class="w3-rounded" style="height:80px;width:80px;margin-top: 10px;margin-bottom: 10px;" alt="Avatar">
+           </div>
        </div>
-       <div class="w3-container w3-half" style="width: 340px;"><p style="margin-top: 15px;">
-         <span  style="font-weight: bold;"><a href="/userprofile/{{this.username}}" style="text-decoration: none;color: #365899;">{{this.name}}</a></span>
-         <span style="margin-left: 210px;"><i class="fa fa-user-plus" style="cursor: pointer;"></i></span>
-         </p>
-         <p>
+       <div class="w3-container w3-half" style="width: 340px;">
+       <div style="margin-top: 15px;">
+         <div  style="font-weight: bold;"><a href="/userprofile/{{this.username}}" style="text-decoration: none;color: #365899;">{{this.name}}</a>
+         <div class="w3-right w3-button" onclick="sendRequest('{{this.username}}')"><i class="fa fa-user-plus" id="frnd{{this.username}}" style="cursor: pointer;font-size: 18px;" ></i></div>
+         </div>
+         </div>
+         <div>
          <span  style="font-weight: bold;"><a style="text-decoration: none;color: #909296;">{{this.profession}}</a></span><br>
-           <span  style="font-weight: bold;"><a  style="text-decoration: none;color: #909296;">{{this.city}}</a></span>
+         <span  style="font-weight: bold;"><a  style="text-decoration: none;color: #909296;">{{this.city}}</a></span>
          <span  style="font-weight: bold;margin-left: 2px;"><a style="text-decoration: none;color: #909296;">,{{this.country}}</a></span>
-         </p>
+       </div>
        </div>
         </div>       
         {{/each}}
 
     <!-- End Middle Column -->
-    </div>
-
-    <div class="w3-col m4 w3-card w3-round w3-white w3-center w3-theme-l5" style=" position: fixed;right: 0px;height:20%;margin-top: 1px;margin-right: 13%;px;width: 20%;">
-
-      <div style="margin-top: 5%;">
-        <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-          <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-        <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="  fa fa-camera-retro fa-fw w3-margin-right"></i>  Photos</button>
-      </div>
-    
-    </div>
-   
-   <div class="w3-col m4 w3-card w3-round w3-white w3-center w3-theme-l5" style=" position: fixed;right: 0px;height:20%;margin-top: 10%;margin-right: 13%;width: 20%;">
-       
-    
-    </div>
-
-    <div class="w3-col m4" style=" position: fixed;right: 0px;height:20%;margin-top: 20%;margin-right: 13%;width: 20%;">
-     <p><a href="/users/dashboard" style="color: #365899;">Terms</a> <a href="/users/dashboard" style="color: #365899;margin-left: 2%;">Help</a></p>
     </div>    
-   <div class="w3-col m4" style=" position: fixed;right: 0px;height:20%;margin-top: 22%;margin-right: 13%;width: 20%;">
-     <p style="color: #365899;">iThink <i class="fa fa-copyright" style="color:#365899;"></i> 2018</p>
-    </div>
-
   <!-- End Grid -->
   </div>
   

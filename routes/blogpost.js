@@ -13,10 +13,10 @@ title        = title.replace(/\r?\n/g,'<br />');
 var date     = new Date();
 var creation = date.toDateString(); 
 var newPost  = Posts({
-  userid:req.user._id,
+  userid:req.user.username,
+  name:req.user.name,
+  imageUrl:req.user.imageUrl,
   creation:creation,
-  likes:0,
-  shares:0,
   text:post,
   title:title,
   tags:["No Tags"] 

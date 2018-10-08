@@ -18,7 +18,7 @@ function updateLikes(id){
 			success: function(data){
 			  var likeid = "likes"+id;
 			  var obj    = JSON.parse(data);
-        	  document.getElementById(likeid).innerHTML = obj.likes;   
+        	  document.getElementById(likeid).innerHTML = obj.likedby.length;   
 			}	
 		});
         
@@ -41,7 +41,7 @@ function updateLikes(id){
 			success: function(data){
 			  var likeid = "likes"+id;
 			  var obj    = JSON.parse(data);
-        	  document.getElementById(likeid).innerHTML = obj.likes;   
+        	  document.getElementById(likeid).innerHTML = obj.likedby.length;   
 			}	
 		});
         element.color = "blue";
