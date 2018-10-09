@@ -18,20 +18,36 @@ router.get('/:userid',function(req,res){
 		user.username   = data[0].username;
 		user.following  = data[0].following;
 		user.followers  = data[0].followers;
-		console.log("first here");
-		console.log(user);
 		
-		Posts.find({userid:user.username},{},function(err,data){
-		   if(err)throw err;
-		   user["posts"] = data;
-		   console.log("here we go!");
-		   console.log(user);
-		   res.render('userprofile',{
-			  _user:user
-		   });
-	    });
+		Posts.find({userid:user.username}).sort({"creation": -1}).exec(function(err,data){
+			  if(err)throw err;
+			  else{
+			  	for(var i = 0;i < data.length; i++){
+			  		var likedby = data[i].likedby;
+			  		var index   = likedby.indexOf(req.user.username);
+			  		if(index!=-1){
+			  			data[i].isliked = 1;
+			  		}
+			  		else{
+			  			data[i].isliked = 0;
+			  		}
+			  	}
+			  	user["posts"] = data;
+			    res.render('userprofile',{
+		 	      _user:user
+		        });
+			  }
+			});
+		});
 
-	});
+		// function(err,data){
+		//    if(err)throw err;
+		//    user["posts"] = data;
+		//    res.render('userprofile',{
+		// 	  _user:user
+		//    });
+	 //    });
+
 });
 
 module.exports = router;

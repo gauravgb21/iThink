@@ -12,13 +12,16 @@
          <div >
          <img src= {{_user.imageUrl}} class="w3-rounded" style="height:300px;width:300px;margin-top: 3%;border-radius: 5px;cursor: pointer;" alt="Avatar" id="dp">
           </div>
-         <h4>{{_user.name}}</h4>
+         <h4><strong>{{_user.name}}</strong></h4>
+         <p style="color: #365899;"><strong>@{{_user.username}}</strong></p>
+         <p><em>Coder Football and Anime  lover</em>
+         </p>
          <hr>
-         <div class="w3-block w3-theme-l5 w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i> {{_user.profession}}</div>
-         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-home fa-fw w3-margin-right "></i> {{_user.city}}, {{_user.country}}</div>
-         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i>{{formatDate _user.birthday}}</div>
-         <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Following <span style="margin-left: 3%;">{{_user.following.length}}</span></div>
-        <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i>Followers <span style="margin-left: 3%;">{{_user.followers.length}}</span></div>
+         <div class="w3-block w3-theme-l5 w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i><strong>{{_user.profession}}</strong></div>
+         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-home fa-fw w3-margin-right "></i><strong>{{user.city}}, {{_user.country}}</strong></div>
+         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i><strong>{{formatDate _user.birthday}}</strong></div>
+        <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Following <span style="margin-left: 3%;">{{_user.following.length}}</span></strong></div>
+        <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Followers <span style="margin-left: 3%;">{{_user.followers.length}}</span></strong></div>
     <!-- End Left Column -->
     </div>
     
@@ -26,20 +29,44 @@
     <div class="w3-col m4"  style="left: 28.5%; position: absolute" id="postsdiv" >
     {{#if _user.posts}}
           {{#each _user.posts}}
-              <div class="w3-container w3-card w3-white w3-round  w3-hover-shadow w3-theme-l5 wrap" style="width: 142%;margin: 10px; margin-left: 15px; margin-top: 0px">
-               <div class="header" style="margin-top: 20px;width: 142%;">
-                 <p style="width: 142%;"><img src={{../_user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar"><span  style="margin-left: 7px;font-weight: bold;"><a href="/dashboard" style="text-decoration: none;color: #365899;">{{../_user.name}}</a></span><span style="margin-left: 28%;color: #a2a3a9">{{this.creation}}</span>
-                 </p>
-                 <p style="font-size: 20px;margin-top: 2%;"><strong>{{this.title}}</strong></p>
-                 <hr style="width: 70%;">
-                 <!-- <hr style="width: 70%;"> -->
+              <div class="w3-container w3-card w3-white w3-round  w3-hover-shadow w3-theme-l5 wrap" style="width: 130%;margin: 10px; margin-left: 15px; margin-top: 0px">
+               <div class="header" style="margin-top: 20px;width: 100%;">
+                 <div style="width: 100%;">
+                 <img src={{../_user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar">
+                 <span  style="margin-left: 7px;font-weight: bold;"><a href="/dashboard" style="text-decoration: none;color: #365899;">{{../_user.name}}</a></span>
+                 <span class="w3-right" style="color: #a2a3a9;margin-right: 13.5%;">Created on {{formatDate this.creation}}</span>
+                 </div>
+                 <p style="font-size: 20px;margin-top: 2%; overflow-wrap: break-word;"><strong>{{this.title}}</strong></p>
+                 <hr style="width: 100%;">
                </div>
-              <p style="margin-top: 10px;">{{{this.text}}}</p>   
-              <div class="footer" style="width: 142%;">
-              <hr style="width: 70%;">
-              <div class="w3-button  w3-margin-bottom" style="width: 23%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likes}}</span></div> 
-              <div class="w3-button  w3-margin-bottom " style="width: 23%;border-radius: 20px;"><i class="fa fa-comments-o" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;"><strong>Comment</strong></span> </div>
-              <div class="w3-button  w3-margin-bottom " style="width: 23%;border-radius: 20px;"><i class="fa fa-share-square-o" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;" id="shares"+ String({{this._id}})><strong>Share</strong></span> <span style="color: #848587;">{{this.shares}}</span></div>
+              <p style="margin-top: 10px; overflow-wrap: break-word;">{{{this.text}}}</p>   
+               <div class="footer" style="width: 100%;">
+              <hr style="">
+              {{#ifCond this.isliked 1}}
+                    <div class="w3-button  w3-margin-bottom" style="width: 49%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;color: blue;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div> 
+              {{else}}
+                  <div class="w3-button  w3-margin-bottom" style="width: 49%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div> 
+              {{/ifCond}}
+              <div class="w3-button w3-margin-bottom " id="commentid" onclick="donecomment('{{this._id}}')" style="width: 49%;border-radius: 20px;"><i class="fa fa-comments-o" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;"><strong>Comment</strong></span> <span style="color: #848587;">{{this.comments.length}}</span></div>
+              <div id="commentbox{{this._id}}" class="w3-hide">
+              <div style="display: inline-block;">
+              <img src="{{../user.imageUrl}}" class="w3-left" style="width: 30px; height: 30px;padding:2px; border-radius: 50%;">
+               </div>
+               <div style="display: inline-block;width: 93%;">
+                <textarea class="w3-round" style="width: 100%; border: 1px solid lightgray;padding: 1%;" rows="1" placeholder="Write a comment..."></textarea>
+               </div>
+                
+                <!-- <div class="showcomments">
+                  <div class="w3-lightgray" style="padding: 10px; border-radius: 5px; border: 1px solid gray; margin-bottom: 10px">
+                    <img src="{{../user.imageUrl}}" class="w3-left" style="width: 25px; height: 25px;padding:2px; border-radius: 50%;">
+                    <p class="" style="padding:2px;color: #365899;"><strong>{{../user.name}}</strong></p>
+                    <p>
+                      comment
+                    </p>
+                  </div>
+                </div> -->
+
+              </div>
               </div>
             </div>      
           {{/each}}
@@ -93,6 +120,18 @@ function openNav() {
 <script>
 /* When the user clicks on the button, 
 toggle between hiding and showing the dropdown content */
+
+function donecomment (id) {
+  var x= document.getElementById('commentbox'+id);
+  if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.className = x.className.replace(" w3-hide", "");
+    } else { 
+        x.className = x.className.replace(" w3-show", "");
+        x.className += " w3-hide";
+    } 
+}
+
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }

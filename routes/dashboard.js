@@ -11,30 +11,24 @@ router.get('/',function(req,res){
 	    }, {
 	        "userid": {"$in": req.user.following}
 	    }]
-    }).sort({"creation": 1}).exec(function(err,data){
+    }).sort({"creation": -1}).exec(function(err,data){
 	  if(err)throw err;
 	  else{
-	  	data.reverse();
 	  	for(var i = 0;i < data.length; i++){
-	  		
+	  		var likedby = data[i].likedby;
+	  		var index   = likedby.indexOf(req.user.username);
+	  		if(index!=-1){
+	  			data[i].isliked = 1;
+	  		}
+	  		else{
+	  			data[i].isliked = 0;
+	  		}
 	  	}
 	    res.render('dashboard',{
 	    	posts : data
 	    });
 	  }
 	});
-	// Post.find({userid : req.user._id}).exec(function(err,data){
-	//   if(err)throw err;
-	//   else{
-	//   	data.reverse();
-	//   	for(var i = 0;i < data.length; i++){
-	  		
-	//   	}
-	//     res.render('dashboard',{
-	//     	posts : data
-	//     });
-	//   }
-	// });
 });
 
 

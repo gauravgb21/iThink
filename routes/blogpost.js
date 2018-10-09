@@ -16,7 +16,7 @@ var newPost  = Posts({
   userid:req.user.username,
   name:req.user.name,
   imageUrl:req.user.imageUrl,
-  creation:creation,
+  creation:Date(),
   text:post,
   title:title,
   tags:["No Tags"] 

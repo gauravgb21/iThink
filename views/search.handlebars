@@ -25,11 +25,15 @@
            <button class="btn1 w3-theme-d4" style="display: none;border: none;width: 300px;cursor: pointer;" id="changebtn" onclick="uploadFile()">Change</button>
          </p>
          <h4>{{user.name}}</h4>
+         <p style="color: #365899;"><strong>@{{user.username}}</strong></p>
+         <p><em>Coder Football and Anime  lover</em>
+         </p>
          <hr>
-         <button class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i> {{user.profession}}</button>
-         <button class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-home fa-fw w3-margin-right "></i> {{user.city}}, {{user.country}}</button>
-         <button class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i>{{formatDate user.birthday}}</button>
-          <button  class="w3-button w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Friends <span style="margin-left: 3%;">1</span></button>
+         <div class="w3-block w3-theme-l5 w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i><strong>{{user.profession}}</strong></div>
+         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-home fa-fw w3-margin-right "></i><strong>{{user.city}}, {{user.country}}</strong></div>
+         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i><strong>{{formatDate user.birthday}}</strong></div>
+        <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Following <span style="margin-left: 3%;">{{user.following.length}}</span></strong></div>
+        <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Followers <span style="margin-left: 3%;">{{user.followers.length}}</span></strong></div>
     <!-- End Left Column -->
     </div>
     
@@ -52,7 +56,11 @@
        <div class="w3-container w3-half" style="width: 340px;">
        <div style="margin-top: 15px;">
          <div  style="font-weight: bold;"><a href="/userprofile/{{this.username}}" style="text-decoration: none;color: #365899;">{{this.name}}</a>
-         <div class="w3-right w3-button" onclick="sendRequest('{{this.username}}')"><i class="fa fa-user-plus" id="frnd{{this.username}}" style="cursor: pointer;font-size: 18px;" ></i></div>
+         {{#ifCond this.isfriend 1}}
+              <div class="w3-right w3-button" onclick="sendRequest('{{this.username}}')"><i class="fa fa-check" id="frnd{{this.username}}" style="cursor: pointer;font-size: 18px;color: blue;" ></i></div>  
+          {{else}}
+              <div class="w3-right w3-button" onclick="sendRequest('{{this.username}}')"><i class="fa fa-user-plus" id="frnd{{this.username}}" style="cursor: pointer;font-size: 18px;" ></i></div>
+          {{/ifCond}}
          </div>
          </div>
          <div>
