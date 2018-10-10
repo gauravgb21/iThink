@@ -26,6 +26,8 @@ var PostSchema=mongoose.Schema({
     }],
     comments:[{
     	username:{type:String},
+    	name:{type:String},
+    	imageUrl:{type:String},
     	content:{type:String}
     }],
     sharedby:[{

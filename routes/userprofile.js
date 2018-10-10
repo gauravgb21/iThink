@@ -40,14 +40,6 @@ router.get('/:userid',function(req,res){
 			});
 		});
 
-		// function(err,data){
-		//    if(err)throw err;
-		//    user["posts"] = data;
-		//    res.render('userprofile',{
-		// 	  _user:user
-		//    });
-	 //    });
-
 });
 
 module.exports = router;

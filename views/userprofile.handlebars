@@ -1,5 +1,6 @@
 <script type="text/javascript" src="/js/index.js"></script>
 <script type="text/javascript" src="/js/likeupdate.js"></script>
+<script type="text/javascript" src="/js/addcomment.js"></script>
 <br>
 <!-- Page Container -->
 <div class="w3-container w3-content" style="max-width:1400px;" id="dashboardid">    
@@ -7,7 +8,7 @@
   <div class="w3-row">
     <!-- Left Column -->
       <!-- Profile -->
-      <div class="w3-card w3-round w3-white w3-hover-shadow w3-container w3-theme-l5 " id="profilepc" style="width: 28%;height: 95%;position: fixed;">
+      <div class="w3-card w3-round w3-white w3-hover-shadow w3-container  " id="profilepc" style="width: 25%;height: 95%;position: fixed;margin-left: 5%;">
          <p class="w3-left" >
          <div >
          <img src= {{_user.imageUrl}} class="w3-rounded" style="height:300px;width:300px;margin-top: 3%;border-radius: 5px;cursor: pointer;" alt="Avatar" id="dp">
@@ -17,19 +18,19 @@
          <p><em>Coder Football and Anime  lover</em>
          </p>
          <hr>
-         <div class="w3-block w3-theme-l5 w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i><strong>{{_user.profession}}</strong></div>
-         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-home fa-fw w3-margin-right "></i><strong>{{user.city}}, {{_user.country}}</strong></div>
-         <div class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i><strong>{{formatDate _user.birthday}}</strong></div>
-        <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Following <span style="margin-left: 3%;">{{_user.following.length}}</span></strong></div>
-        <div  class=" w3-block w3-theme-l5 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Followers <span style="margin-left: 3%;">{{_user.followers.length}}</span></strong></div>
+         <div class="w3-block w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i><strong>{{_user.profession}}</strong></div>
+         <div class=" w3-block  w3-left-align"><i class="fa fa-home fa-fw w3-margin-right "></i><strong>{{user.city}}, {{_user.country}}</strong></div>
+         <div class=" w3-block  w3-left-align"><i class="fa fa-birthday-cake fa-fw w3-margin-right "></i><strong>{{formatDate _user.birthday}}</strong></div>
+        <div  class=" w3-block  w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Following <span style="margin-left: 3%;">{{_user.following.length}}</span></strong></div>
+        <div  class=" w3-block  w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i><strong>Followers <span style="margin-left: 3%;">{{_user.followers.length}}</span></strong></div>
     <!-- End Left Column -->
     </div>
     
     <!-- Middle Column -->
-    <div class="w3-col m4"  style="left: 28.5%; position: absolute" id="postsdiv" >
+    <div class="w3-col m4"  style="left: 30.5%; position: absolute" id="postsdiv" >
     {{#if _user.posts}}
           {{#each _user.posts}}
-              <div class="w3-container w3-card w3-white w3-round  w3-hover-shadow w3-theme-l5 wrap" style="width: 130%;margin: 10px; margin-left: 15px; margin-top: 0px">
+              <div class="w3-container w3-card w3-white w3-round  w3-hover-shadow wrap" style="width: 130%;margin: 10px; margin-left: 15px; margin-top: 0px">
                <div class="header" style="margin-top: 20px;width: 100%;">
                  <div style="width: 100%;">
                  <img src={{../_user.imageUrl}} class="w3-circle" style="height:40px;width:40px;" alt="Avatar">
@@ -48,23 +49,35 @@
                   <div class="w3-button  w3-margin-bottom" style="width: 49%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div> 
               {{/ifCond}}
               <div class="w3-button w3-margin-bottom " id="commentid" onclick="donecomment('{{this._id}}')" style="width: 49%;border-radius: 20px;"><i class="fa fa-comments-o" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;"><strong>Comment</strong></span> <span style="color: #848587;">{{this.comments.length}}</span></div>
-              <div id="commentbox{{this._id}}" class="w3-hide">
+               <div id="commentbox{{this._id}}" class="w3-hide">
               <div style="display: inline-block;">
-              <img src="{{../user.imageUrl}}" class="w3-left" style="width: 30px; height: 30px;padding:2px; border-radius: 50%;">
+              <img src="{{../user.imageUrl}}" class="w3-left" style="width: 40px; height: 40px;padding:2px; border-radius: 50%;">
                </div>
-               <div style="display: inline-block;width: 93%;">
-                <textarea class="w3-round" style="width: 100%; border: 1px solid lightgray;padding: 1%;" rows="1" placeholder="Write a comment..."></textarea>
+               <div style="display: inline-block;width: 80%;">
+                <textarea class="w3-round" style="width: 100%; border: 1px solid lightgray;padding: 1%;" rows="2" placeholder="Write a comment..." id="textarea{{this._id}}"></textarea>
                </div>
-                
-                <!-- <div class="showcomments">
-                  <div class="w3-lightgray" style="padding: 10px; border-radius: 5px; border: 1px solid gray; margin-bottom: 10px">
-                    <img src="{{../user.imageUrl}}" class="w3-left" style="width: 25px; height: 25px;padding:2px; border-radius: 50%;">
-                    <p class="" style="padding:2px;color: #365899;"><strong>{{../user.name}}</strong></p>
+                <div style="display: inline-block;">
+                  <button class="w3-button w3-theme-d4" style="margin-bottom: 67%;border-radius: 20px;" onclick="addComment('{{this._id}}')">add</button>
+                </div>
+                <div class="showcomments">
+                {{#ifCond this.comments.length 0}}
+                 <p><em>No comments to show you!</em></p>
+                {{else}}
+                {{#each comments}}
+                  <div class="w3-lightgray" style="padding: 10px;margin-bottom: 10px">
+                   <div style="display: inline-block;width: 20%;">
+                    <img src="{{this.imageUrl}}" class="w3-left" style="width: 25px; height: 25px;padding:2px; border-radius: 50%;">
+                    <p class="" style="padding:2px;color: #365899;overflow-wrap: break-word;"><strong>{{this.name}}</strong></p>
+                   </div>
+                   <div style="display: inline-block;width: 70%;background-color: #e9ebee;padding: 2%;border-radius: 30px;"> 
                     <p>
-                      comment
+                      {{{this.content}}}
                     </p>
+                    </div>
                   </div>
-                </div> -->
+                  {{/each}}
+                {{/ifCond}}
+                </div> 
 
               </div>
               </div>
@@ -75,6 +88,17 @@
     {{/if}}  
     <!-- End Middle Column -->
     </div>
+
+   <div style="margin-left: 79%;width: 200px;height: 200px;position: fixed;">
+      <ul style=" list-style-type: none;">
+        <li><a style="text-decoration: none;" href="/showfollowers">Followers</a></li>
+        <li><a style="text-decoration: none;" href="/showfollowings">Following</a></li>
+        <li>Edit Basic Information</li>
+        <li>Edit Bio</li>
+        <li>Help</li>
+      </ul>
+    </div>
+
   <!-- End Grid -->
   </div>
 <!-- End Page Container -->

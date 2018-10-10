@@ -32,6 +32,9 @@ var getlikes         =   require('./routes/getlikes');
 var userprofile      =   require('./routes/userprofile');
 var addfriend        =   require('./routes/addfriend');
 var removefriend     =   require('./routes/removefriend');
+var addcomment       =   require('./routes/addcomment');
+var showfollowers    =   require('./routes/showfollowers');
+var showfollowings   =   require('./routes/showfollowings');
  //Init app
 var app=express();
 
@@ -118,6 +121,9 @@ app.use('/getlikes',getlikes);
 app.use('/userprofile',userprofile);
 app.use('/addfriend',addfriend);
 app.use('/removefriend',removefriend);
+app.use('/addcomment',addcomment);
+app.use('/showfollowers',showfollowers);
+app.use('/showfollowings',showfollowings);
 //connect app 
 
 app.listen(8081,function(){

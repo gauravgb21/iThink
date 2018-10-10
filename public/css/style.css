@@ -267,3 +267,13 @@ a {
 .container:hover .middle {
   opacity: 1;
 }
+
+li {
+  margin-top: 4%;
+  color: #666;
+  cursor: pointer;
+}
+
+li:hover {
+  color: blue;
+}
