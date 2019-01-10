@@ -12,6 +12,7 @@ var Handlebars       =   require('handlebars');
 var HandlebarsIntl   =   require('handlebars-intl');
 var mongo            =   require('mongodb');
 var mongoose         =   require('mongoose');
+var port             =   process.env.PORT || 8081;
 mongoose.connect('mongodb://localhost/loginapp');
 var db               =   mongoose.connection;
 
@@ -130,6 +131,6 @@ app.use('/updatedetails',updatedetails);
 app.use('/updatebio',updatebio);
 //connect app 
 
-app.listen(8081,function(){
+app.listen(port,function(){
 	console.log('server is listing to 8081');
 });
