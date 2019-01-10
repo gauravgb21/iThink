@@ -30,6 +30,9 @@ var UserSchema=mongoose.Schema({
 	birthday:{
 		type:Date
 	},
+	bio:{
+		type:String
+	},
 	following:[{
 		type:String
 	}],

@@ -35,6 +35,8 @@ var removefriend     =   require('./routes/removefriend');
 var addcomment       =   require('./routes/addcomment');
 var showfollowers    =   require('./routes/showfollowers');
 var showfollowings   =   require('./routes/showfollowings');
+var updatedetails    =   require('./routes/updatedetails');
+var updatebio        =   require('./routes/updatebio');
  //Init app
 var app=express();
 
@@ -124,6 +126,8 @@ app.use('/removefriend',removefriend);
 app.use('/addcomment',addcomment);
 app.use('/showfollowers',showfollowers);
 app.use('/showfollowings',showfollowings);
+app.use('/updatedetails',updatedetails);
+app.use('/updatebio',updatebio);
 //connect app 
 
 app.listen(8081,function(){

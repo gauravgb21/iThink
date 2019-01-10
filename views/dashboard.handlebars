@@ -28,7 +28,7 @@
         </p>
          <h4><strong>{{user.name}}</strong></h4>
          <p style="color: #365899;"><strong>@{{user.username}}</strong></p>
-         <p><em>Coder Football and Anime  lover</em>
+         <p><em>{{user.bio}}</em>
          </p>
          <hr>
          <div class="w3-block w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i><strong>{{user.profession}}</strong></div>
@@ -68,19 +68,61 @@
                  <p style="font-size: 20px;margin-top: 2%; overflow-wrap: break-word;"><strong>{{this.title}}</strong></p>
                  <hr style="width: 100%;">
                </div>
-              <p style="margin-top: 10px; overflow-wrap: break-word;">{{{this.text}}}</p>   
+              <p style="margin-top: 10px; overflow-wrap: break-word;">{{{this.text}}}</p>
+              {{#ifCond this.userid ../user.username}}   
+                  <div class="footer" style="width: 100%;">
+                  <hr style="">
+                  {{#ifCond this.isliked 1}}
+                        <div class="w3-button  w3-margin-bottom" style="width: 32%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;color: blue;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div>
+                  {{else}}
+                      <div class="w3-button  w3-margin-bottom" style="width: 32%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div>
+                  {{/ifCond}}
+                  <div class="w3-button w3-margin-bottom " id="commentid" onclick="donecomment('{{this._id}}')" style="width: 32%;border-radius: 20px;"><i class="fa fa-comments-o" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;"><strong>Comment</strong></span> <span style="color: #848587;">{{this.comments.length}}</span></div>
+                  
+                  <div class="w3-button  w3-margin-bottom " style="width: 32%;border-radius: 20px;"><i class="fa fa-ellipsis-v" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;" id="shares"+ String({{this._id}})><strong>Options</strong></span></div>
+
+                  <div id="commentbox{{this._id}}" class="w3-hide">
+                  <div style="display: inline-block;">
+                  <img src="{{../user.imageUrl}}" class="w3-left" style="width: 40px; height: 40px;padding:2px; border-radius: 50%;">
+                   </div>
+                   <div style="display: inline-block;width: 80%;">
+                    <textarea class="w3-round" style="width: 100%; border: 1px solid lightgray;padding: 1%;" rows="2" placeholder="Write a comment..." id="textarea{{this._id}}"></textarea>
+                   </div>
+                    <div style="display: inline-block;">
+                      <button class="w3-button w3-theme-d4" style="margin-bottom: 67%;border-radius: 20px;" onclick="addComment('{{this._id}}')">add</button>
+                    </div>
+                    <div class="showcomments">
+                    {{#ifCond this.comments.length 0}}
+                     <p><em>No comments to show you!</em></p>
+                    {{else}}
+                    {{#each comments}}
+                      <div class="w3-lightgray" style="padding: 10px;margin-bottom: 10px">
+                       <div style="display: inline-block;width: 20%;">
+                        <img src="{{this.imageUrl}}" class="w3-left" style="width: 25px; height: 25px;padding:2px; border-radius: 50%;">
+                        <p class="" style="padding:2px;color: #365899;overflow-wrap: break-word;"><a href="/userprofile/{{this.username}}" style="text-decoration: none;cursor: pointer;" ><strong>{{this.name}}</strong></a></p>
+                       </div>
+                       <div style="display: inline-block;width: 70%;background-color: #e9ebee;padding: 2%;border-radius: 30px;"> 
+                        <p>
+                          {{{this.content}}}
+                        </p>
+                        </div>
+                      </div>
+                      {{/each}}
+                    {{/ifCond}}
+                    </div> 
+
+                  </div>
+                  </div>
+              {{else}}
               <div class="footer" style="width: 100%;">
               <hr style="">
               {{#ifCond this.isliked 1}}
-                    <div class="w3-button  w3-margin-bottom" style="width: 32%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;color: blue;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div>
+                    <div class="w3-button  w3-margin-bottom" style="width: 49%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;color: blue;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div> 
               {{else}}
-                  <div class="w3-button  w3-margin-bottom" style="width: 32%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div>
+                  <div class="w3-button  w3-margin-bottom" style="width: 49%;border-radius: 20px;" onclick="updateLikes(`{{this._id}}`)"><i class="fa fa-thumbs-up" style="padding-right: 8px;font-size: 22px;" id="licon{{this._id}}"></i><span style="color: #848587;"><strong>Like</strong></span> <span style="color: #848587;" id="likes{{this._id}}">{{this.likedby.length}}</span></div> 
               {{/ifCond}}
-              <div class="w3-button w3-margin-bottom " id="commentid" onclick="donecomment('{{this._id}}')" style="width: 32%;border-radius: 20px;"><i class="fa fa-comments-o" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;"><strong>Comment</strong></span> <span style="color: #848587;">{{this.comments.length}}</span></div>
-
-              <div class="w3-button  w3-margin-bottom " style="width: 32%;border-radius: 20px;"><i class="fa fa-ellipsis-v" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;" id="shares"+ String({{this._id}})><strong>Options</strong></span></div>
-
-              <div id="commentbox{{this._id}}" class="w3-hide">
+              <div class="w3-button w3-margin-bottom " id="commentid" onclick="donecomment('{{this._id}}')" style="width: 49%;border-radius: 20px;"><i class="fa fa-comments-o" style="padding-right: 8px;font-size: 19px;"></i><span style="color: #848587;"><strong>Comment</strong></span> <span style="color: #848587;">{{this.comments.length}}</span></div>
+               <div id="commentbox{{this._id}}" class="w3-hide">
               <div style="display: inline-block;">
               <img src="{{../user.imageUrl}}" class="w3-left" style="width: 40px; height: 40px;padding:2px; border-radius: 50%;">
                </div>
@@ -98,7 +140,7 @@
                   <div class="w3-lightgray" style="padding: 10px;margin-bottom: 10px">
                    <div style="display: inline-block;width: 20%;">
                     <img src="{{this.imageUrl}}" class="w3-left" style="width: 25px; height: 25px;padding:2px; border-radius: 50%;">
-                    <p class="" style="padding:2px;color: #365899;overflow-wrap: break-word;"><strong>{{this.name}}</strong></p>
+                    <p class="" style="padding:2px;color: #365899;overflow-wrap: break-word;"><a href="/userprofile/{{this.username}}" style="text-decoration: none;cursor: pointer;" ><strong>{{this.name}}</strong></a></p>
                    </div>
                    <div style="display: inline-block;width: 70%;background-color: #e9ebee;padding: 2%;border-radius: 30px;"> 
                     <p>
@@ -112,6 +154,7 @@
 
               </div>
               </div>
+              {{/ifCond}}
             </div>      
           {{/each}}
     {{else}}
@@ -124,12 +167,78 @@
       <ul style=" list-style-type: none;">
         <li><a style="text-decoration: none;" href="/showfollowers">Followers</a></li>
         <li><a style="text-decoration: none;" href="/showfollowings">Following</a></li>
-        <li>Edit Basic Information</li>
-        <li>Edit Bio</li>
-        <li>Help</li>
+        <li onclick="document.getElementById('infoedit').style.display='block'">Edit Basic Information</li>
+        <li onclick="document.getElementById('bioedit').style.display='block'">Edit Bio</li>
       </ul>
     </div>
+  
+  <!--  model -->
 
+  <div id="infoedit" class="w3-modal" style="border-radius: 4px;">
+    <div class="w3-modal-content w3-card-4" style="background-color: #e9ebee;width: 400px;">
+      <header class="w3-container" style="background-color: #e9ebee;"> 
+      <div style="display: inline-block;">
+        <div style="margin-top: 0%;" onclick="document.getElementById('infoedit').style.display='none'" class="w3-button w3-small w3-display-topright">&times;</div>
+        </div>
+        <div style="display: inline-block;width: 99%">
+        <p style="color: #074b83;margin-left: 40%;"><strong>Update Details</strong></p>
+        </div>
+      </header>
+      <div class="w3-container" style="margin-bottom: 3%;">
+           <form class="form" method="post" action="/updatedetails">
+            <div class="form__group">
+                <input type="text" placeholder="Name" class="form__input" name="uname" />
+            </div>
+
+            <div class="form__group">
+                <input type="date" placeholder="birthday" class="form__input" name="ubirthday" />
+            </div>
+
+            <div class="form__group">
+                <input type="text" placeholder="profession" class="form__input" name="uprofession" />
+            </div>
+
+            <div class="form__group">
+                <input type="text" placeholder="city" class="form__input" name="ucity" />
+            </div>
+            
+            <div class="form__group">
+                <input type="text" placeholder="country" class="form__input" name="ucountry" />
+            </div>
+
+            <div class="form__group">
+                <input type="password" placeholder="password" class="form__input" name="upassword" />
+            </div>
+            <input type="submit" name="update" value="update" class="btn w3-theme-d5">
+        </form>
+      </div>
+      <footer class="w3-container"> 
+      </footer>
+      </div>
+  </div>  
+  
+  <div id="bioedit" class="w3-modal">
+    <div class="w3-modal-content w3-card-4" style="background-color: #e9ebee;width: 400px;">
+      <header class="w3-container" style="background-color: #e9ebee;"> 
+      <div style="display: inline-block;">
+        <div style="margin-top: 0%;" onclick="document.getElementById('bioedit').style.display='none'" class="w3-button w3-small w3-display-topright">&times;</div>
+        </div>
+        <div style="display: inline-block;width: 99%">
+        <p style="color: #074b83;margin-left: 40%;"><strong>Update Bio</strong></p>
+        </div>
+      </header>
+      <div class="w3-container" style="margin-bottom: 3%;">
+           <form class="form" method="post" action="/updatebio">
+            <div class="form__group">
+                <input type="text" placeholder="Edit Bio" class="form__input" name="ubio" />
+            </div>
+            <input type="submit" name="update" value="update" class="btn w3-theme-d5">
+        </form>
+      </div>
+      <footer class="w3-container"> 
+      </footer>
+      </div>
+  </div>
   <!-- End Grid -->
   </div>
 <!-- End Page Container -->

@@ -26,7 +26,7 @@
          </p>
          <h4>{{user.name}}</h4>
          <p style="color: #365899;"><strong>@{{user.username}}</strong></p>
-         <p><em>Coder Football and Anime  lover</em>
+         <p><em>{{user.bio}}</em>
          </p>
          <hr>
          <div class="w3-block  w3-left-align"><i class="fa fa-pencil fa-fw w3-margin-right "></i><strong>{{user.profession}}</strong></div>
@@ -79,11 +79,78 @@
       <ul style=" list-style-type: none;">
         <li><a style="text-decoration: none;" href="/showfollowers">Followers</a></li>
         <li><a style="text-decoration: none;" href="/showfollowings">Following</a></li>
-        <li>Edit Basic Information</li>
-        <li>Edit Bio</li>
-        <li>Help</li>
+        <li onclick="document.getElementById('infoedit').style.display='block'">Edit Basic Information</li>
+        <li onclick="document.getElementById('bioedit').style.display='block'">Edit Bio</li>
       </ul>
     </div>
+   
+   <!--  model -->
+
+  <div id="infoedit" class="w3-modal" style="border-radius: 4px;">
+    <div class="w3-modal-content w3-card-4" style="background-color: #e9ebee;width: 400px;">
+      <header class="w3-container" style="background-color: #e9ebee;"> 
+      <div style="display: inline-block;">
+        <div style="margin-top: 0%;" onclick="document.getElementById('infoedit').style.display='none'" class="w3-button w3-small w3-display-topright">&times;</div>
+        </div>
+        <div style="display: inline-block;width: 99%">
+        <p style="color: #074b83;margin-left: 40%;"><strong>Update Details</strong></p>
+        </div>
+      </header>
+      <div class="w3-container" style="margin-bottom: 3%;">
+           <form class="form" method="post" action="/updatedetails">
+            <div class="form__group">
+                <input type="text" placeholder="Name" class="form__input" name="uname" />
+            </div>
+
+            <div class="form__group">
+                <input type="date" placeholder="birthday" class="form__input" name="ubirthday" />
+            </div>
+
+            <div class="form__group">
+                <input type="text" placeholder="profession" class="form__input" name="uprofession" />
+            </div>
+
+            <div class="form__group">
+                <input type="text" placeholder="city" class="form__input" name="ucity" />
+            </div>
+            
+            <div class="form__group">
+                <input type="text" placeholder="country" class="form__input" name="ucountry" />
+            </div>
+
+            <div class="form__group">
+                <input type="password" placeholder="password" class="form__input" name="upassword" />
+            </div>
+            <input type="submit" name="update" value="update" class="btn w3-theme-d5">
+        </form>
+      </div>
+      <footer class="w3-container"> 
+      </footer>
+      </div>
+  </div>  
+  
+  <div id="bioedit" class="w3-modal">
+    <div class="w3-modal-content w3-card-4" style="background-color: #e9ebee;width: 400px;">
+      <header class="w3-container" style="background-color: #e9ebee;"> 
+      <div style="display: inline-block;">
+        <div style="margin-top: 0%;" onclick="document.getElementById('bioedit').style.display='none'" class="w3-button w3-small w3-display-topright">&times;</div>
+        </div>
+        <div style="display: inline-block;width: 99%">
+        <p style="color: #074b83;margin-left: 40%;"><strong>Update Bio</strong></p>
+        </div>
+      </header>
+      <div class="w3-container" style="margin-bottom: 3%;">
+           <form class="form" method="post" action="/updatebio">
+            <div class="form__group">
+                <input type="text" placeholder="Edit Bio" class="form__input" name="ubio" />
+            </div>
+            <input type="submit" name="update" value="update" class="btn w3-theme-d5">
+        </form>
+      </div>
+      <footer class="w3-container"> 
+      </footer>
+      </div>
+  </div>
 
   <!-- End Grid -->
   </div>
